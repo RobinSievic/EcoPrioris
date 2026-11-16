@@ -8,16 +8,34 @@ import pandas as pd
 # python -m streamlit run app.py
 
 # Chargement des données
-chemin = Path(
-    r"C:\Users\Sievic\OneDrive\Bureau\projet\Datathon\donnees\bocage"
+
+# Chemin vers la racine du projet
+RACINE = Path(__file__).resolve().parent.parent
+
+# Données du bocage
+chemin = RACINE / "donnees" / "bocage"
+
+evolution = gpd.read_file(
+    chemin / "evolution_bocage.gpkg",
+    layer="evolution"
 )
 
-evolution = gpd.read_file(chemin / "evolution_bocage.gpkg", layer="evolution")
-etat_bocage = gpd.read_file(chemin / "etat_bocage.gpkg", layer="etat_bocage")
+etat_bocage = gpd.read_file(
+    chemin / "etat_bocage.gpkg",
+    layer="etat_bocage"
+)
 
-zones_boisees = gpd.read_file(Path(r"C:\Users\Sievic\OneDrive\Bureau\projet\Datathon\resultats\indicateurs_zones_boisees.gpkg"))
+# Zones boisées
+zones_boisees = gpd.read_file(
+    RACINE / "resultats" / "indicateurs_zones_boisees.gpkg"
+)
 
-biodiversite = pd.read_csv(Path(r"C:\Users\Sievic\OneDrive\Bureau\projet\Datathon\livraison_robin_biodiversite\indicateurs\indicateurs_biodiversite_bocage.csv"))
+# Biodiversité
+biodiversite = pd.read_csv(
+    RACINE / "livraison_robin_biodiversite" /
+    "indicateurs" / "indicateurs_biodiversite_bocage.csv"
+)
+
 
 
 # Conversion en coordonnées géographiques pour Folium
