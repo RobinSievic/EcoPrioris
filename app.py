@@ -9,32 +9,30 @@ import pandas as pd
 
 # Chargement des données
 
-# Chemin vers la racine du projet
-RACINE = Path(__file__).resolve().parent.parent
 
-# Données du bocage
-chemin = RACINE / "donnees" / "bocage"
+# Chemin vers le dossier contenant app.py
+RACINE = Path(__file__).resolve().parent
 
 evolution = gpd.read_file(
-    chemin / "evolution_bocage.gpkg",
+    RACINE / "evolution_bocage.gpkg",
     layer="evolution"
 )
 
 etat_bocage = gpd.read_file(
-    chemin / "etat_bocage.gpkg",
+    RACINE / "etat_bocage.gpkg",
     layer="etat_bocage"
 )
 
-# Zones boisées
 zones_boisees = gpd.read_file(
-    RACINE / "resultats" / "indicateurs_zones_boisees.gpkg"
+    RACINE / "indicateurs_zones_boisees.gpkg"
 )
 
-# Biodiversité
 biodiversite = pd.read_csv(
-    RACINE / "livraison_robin_biodiversite" /
-    "indicateurs" / "indicateurs_biodiversite_bocage.csv"
+    RACINE / "indicateurs_biodiversite_bocage.csv"
 )
+
+
+
 
 
 
